@@ -1,0 +1,29 @@
+<!-- Header Component -->
+<app-header></app-header>
+
+<div class="container col-md-6 col-sm-12" style="min-height: 100vh;">
+    <div class="error-msg" style="margin-top: 5em;" [hidden]="transactions.length != 0">
+        <h3 style="text-align: center;">Oops! No Transactions to Show :(</h3>
+    </div>
+    <div class="project" *ngFor="let trans of transactions">
+        <div class="row bg-white has-shadow">
+        <div class="left-col col-lg-12 d-flex align-items-center justify-content-between">
+            <div class="project-title d-flex align-items-center">
+                <div class="image">
+                    <img src="{{trans.endpointImageUrl}}" alt="..." class="img-fluid">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-caret-down" viewBox="0 0 16 16">
+                        <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+                      </svg> -->
+                </div>
+                <div class="text" *ngIf="trans.transactionType==='debit'">
+                    <h6 class="h4">Paid to {{trans.endpointName}}</h6><small>{{trans.transactionDateTime}}</small>
+                </div>
+                <div class="text" *ngIf="trans.transactionType==='credit'">
+                    <h6 class="h4">Recieved from {{trans.endpointName}}</h6><small>{{trans.transactionDateTime}}</small>
+                </div>
+            </div>
+            <div class="project-date"><span class="hidden-sm-down">₹ {{trans.transactionAmount}}</span></div>
+        </div>
+        </div>
+    </div>
+</div>

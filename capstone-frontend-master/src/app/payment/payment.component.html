@@ -1,0 +1,193 @@
+<!-- Header component -->
+<app-header></app-header>
+
+<!-- Payment API
+<div class="container">
+
+  <h2 class="mb-5">Angular Stripe Credit Card Payment Gateway Example</h2>
+
+  <div class="col-md-4 mb-3">
+    <button (click)="checkout(20)" class="btn btn-primary btn-block">Pay $20</button>
+  </div>
+  <div class="col-md-4 mb-3">
+    <button (click)="checkout(30)" class="btn btn-primary btn-block">Pay $30</button>
+  </div>
+  <div class="col-md-4">
+    <button (click)="checkout(40)" class="btn btn-primary btn-block">Pay $40</button>
+  </div>
+</div> -->
+
+<!-- Payment Form  -->
+
+<div class="container" style="min-height: 100vh;">
+  <main>
+    
+    <!-- Radio Button for Endpoint/Cust-->
+    <div class="py-5 text-center make">
+      <h5 style="display:inline"><input type="radio" value="male" name="gender" ngModel [checked]='true' (click)="setradio('Vendor')"> Payment to Vendor </h5>
+      <h5 style="display:inline"><input type="radio" value="female" name="gender" ngModel (click)="setradio('Wallet')"> Payment to Wallet</h5>
+      <!-- <p>
+        <input type="radio" value="Payment to Vendor" name="payWho" [ngModel]="payWho" > Payment to Vendor
+        <input type="radio" value="Payment to Wallet" name="payWho" [ngModel]="payWho" > Payment to Wallet
+      </p> -->
+    </div>
+
+    <div [hidden] = "!showEndpointPayment">
+      <div class="py-4 text-center">
+        <!-- <img class="d-block mx-auto mb-4" src="https://store-cdn.arduino.cc/usa/wysiwyg/Payment_Options.jpg"> -->
+        <h2>Make Payment</h2>
+        <p class="lead">Please enter a valid endpoint id to begin transaction.</p>
+      </div>
+  
+      <!-- MAIN FORM CONTROL STARTS HERE -->
+      <!-- <div class="row"> -->
+        <div class="col-md-7 col-lg-8 card mb-3" >
+  
+          <!-- Endpoint information -->
+          <h4 class="mb-3">Enter Vendor Information</h4>
+          <form class="needs-validation" novalidate [formGroup]="paymentForm">
+  
+            <loading *ngIf="isLoading">{{ isLoading }}</loading>
+  
+            <div class="row g-3">
+  
+              <!-- Firstname infomration -->
+              <div class="col-sm-6">
+                <label for="vendorId" class="form-label">Vendor Id</label>
+                <input type="text" class="form-control" id="vendorId" placeholder="" value="" required (blur)="onEndpointEntered()" (keyup.enter)="onEndpointEntered()" formControlName="endpointId" autocomplete="off">
+                <div class="invalid-feedback">
+                  Valid vendor id is required.
+                </div>
+              </div>
+  
+              <!-- Email Address information -->
+             <!-- Firstname infomration -->
+             <div class="col-12" [hidden]="!showEndpointDetails">
+              <label for="vendorName" class="form-label">Vendor Name</label>
+              <input type="text" class="form-control" id="vendorName" placeholder="" value="" formControlName="endpointName">
+            </div>
+  
+              <!-- Country Information -->
+              <div class="col-md-5" [hidden]="!showEndpointDetails">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" class="form-control" id="country" placeholder="" formControlName="endpointCountry">
+              </div>
+  
+              <!-- Currency Display -->
+              <div class="col-md-3" [hidden]="!showEndpointDetails">
+                <label for="zip" class="form-label">Currency</label>
+                <input type="text" class="form-control" id="currency" placeholder="" formControlName="endpointCurrency">
+              </div>
+
+              <div class="col-md-3" [hidden]="!showEndpointDetails">
+                <label for="conversion" class="form-label">Current Conversion Rate</label>
+                <input type="text" class="form-control" id="conversion" placeholder="" formControlName="conversion" required>
+              </div>
+            </div>
+
+            
+            
+  
+            <!-- Horizontal row -->
+            <hr class="my-4">
+            
+            <!-- Amount to be transferred -->
+            <div class="col-md-3" [hidden]="!showEndpointDetails">
+              <label for="amount" class="form-label">Enter Amount in {{endpointDetails.currency}}</label>
+              <input type="number" class="form-control" id="amount" placeholder="" formControlName="amount" required>
+            </div>
+
+            
+            <!-- Horizontal row -->
+            <hr class="my-4">
+            
+            
+            <!-- Submit Button of the form -->
+            <button class="w-100 btn btn-primary btn-lg" type="submit" [disabled]='!paymentForm.valid' (click)="makePayment()" >Make Payment!</button>
+          </form>
+        </div>
+  
+    </div>
+
+
+
+    <div [hidden] = "!showWalletPayment">
+      <div class="py-4 text-center">
+        <!-- <img class="d-block mx-auto mb-4" src="https://store-cdn.arduino.cc/usa/wysiwyg/Payment_Options.jpg"> -->
+        <h2>Make Payment</h2>
+        <p class="lead">Please enter a valid Customer id to begin transaction.</p>
+      </div>
+  
+      <!-- MAIN FORM CONTROL STARTS HERE -->
+      <!-- <div class="row"> -->
+        <div class="col-md-7 col-lg-8 card mb-3" >
+  
+          <!-- Endpoint information -->
+          <h4 class="mb-3">Enter Customer Information</h4>
+          <form class="needs-validation" novalidate [formGroup]="paymentCustomerForm">
+  
+            <loading *ngIf="isLoading">{{ isLoading }}</loading>
+  
+            <div class="row g-3">
+  
+              <!-- Firstname infomration -->
+              <div class="col-sm-6">
+                <label for="payCustId" class="form-label">Customer Id</label>
+                <input type="text" class="form-control" id="payCustId" placeholder="" value="" required (blur)="onCustIdEntered()" (keyup.enter)="onCustIdEntered()" formControlName="payCustId" autocomplete="off">
+                <div class="invalid-feedback">
+                  Valid customer id is required.
+                </div>
+              </div>
+  
+              <!-- Email Address information -->
+             <!-- Firstname infomration -->
+              <div class="col-12" [hidden]="!showCustomerDetails">
+                <label for="payCustName" class="form-label">Customer Name</label>
+                <input type="text" class="form-control" id="payCustName" placeholder="" value="" formControlName="payCustName">
+              </div>
+
+              <div class="col-12" [hidden]="!showCustomerDetails">
+                <label for="payCustEmail" class="form-label">Customer Email</label>
+                <input type="text" class="form-control" id="payCustEmail" placeholder="" value="" formControlName="payCustEmail">
+              </div>
+            
+            
+            </div>
+  
+            <!-- Horizontal row -->
+            <hr class="my-4">
+            
+            <!-- Amount to be transferred -->
+            <div class="col-md-3" [hidden]="!showCustomerDetails">
+              <label for="payCustAmount" class="form-label">Enter Amount</label>
+              <input type="number" class="form-control" id="payCustAmount" placeholder="" formControlName="payCustAmount" required>
+            </div>
+            
+            <!-- Horizontal row -->
+            <hr class="my-4">
+            
+            
+            <!-- Submit Button of the form -->
+            <button class="w-100 btn btn-primary btn-lg" type="submit" [disabled]='!paymentCustomerForm.valid' (click)="makeCustomerPayment()" >Make Payment!</button>
+          </form>
+        </div>
+  
+    </div>
+
+      
+    <!-- </div> -->
+  </main>
+
+
+  <!-- Footer -->
+  <!-- <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2017–2021 Company Name</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacy</a></li>
+      <li class="list-inline-item"><a href="#">Terms</a></li>
+      <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+  </footer> -->
+
+
+</div>

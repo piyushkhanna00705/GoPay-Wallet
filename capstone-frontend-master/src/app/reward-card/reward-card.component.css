@@ -1,0 +1,18 @@
+.card-img-top {
+    width: 100%;
+    height: 20vh;
+    object-fit: contain;
+}
+
+.card-header {
+    background-image: linear-gradient(to right, #2b5876 0%, #4e4376  51%, #2b5876  100%);
+    color: white;
+}
+
+.card-text {
+    color : green;
+}
+
+.btn.btn-square {
+    border-radius: 0;
+}

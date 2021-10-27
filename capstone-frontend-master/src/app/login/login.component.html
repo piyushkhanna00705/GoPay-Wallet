@@ -1,0 +1,128 @@
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<br><br><br>
+
+<div class="login" [hidden]="!showloginpage" style="min-height: 100vh;">
+    <div id="main-wrapper" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6 d-none d-lg-inline-block">
+                                <div class="account-block rounded-right">
+                                    <div class="overlay rounded-right"></div>
+                                    <div class="account-testimonial">
+                                        <h4 class="text-white mb-4"><span>GoPay Wallet</span></h4>
+                                        <h2 class="lead text-white"><span>"Its better than PayPal !"</span></h2>
+                                        <h2 class="animate__zoomInUp"><span>- Beff Jezos</span></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="mb-5">
+                                        <h3 class="h4 font-weight-bold text-theme">Login</h3>
+                                    </div>
+
+                                    <h6 class="h5 mb-0">Welcome back!</h6>
+                                    <p class="text-muted mt-2 mb-5">Enter your email address and password to enter</p>
+
+                                    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="loginInputEmail" placeholder="Email address" formControlName="email">
+                                            <div class="alert alert-danger" *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+                                                Please provide a valid Email.
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <input type="password" class="form-control" id="loginInputPassword" placeholder="Password" formControlName="password">
+                                        </div>
+                                        <div class="alert alert-danger mb-4" *ngIf="invalidCredentials">
+                                            Email or Password is Incorrect.
+                                        </div>
+                                        <button type="submit" class="btn btn-theme" [disabled]="loginForm.invalid">Login</button>
+                                        <!-- <a href="#l" class="forgot-link float-right text-primary">Forgot password?</a> -->
+                                    </form>
+                                </div>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+                <p class="text-muted text-center mt-3 mb-0">Don't have an account? <a href="" class="text-primary ml-1" (click)="showloginpage=false">Register</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="registration" [hidden]= "showloginpage" style="min-height: 100vh;">
+    <div id="main-wrapper" class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <div class="col-lg-6 d-none d-lg-inline-block">
+                                <div class="account-block rounded-right">
+                                    <div class="overlay rounded-right"></div>
+                                    <div class="account-testimonial">
+                                        <h4 class="text-white mb-4"><span>GoPay Wallet</span></h4>
+                                        <h2 class="lead text-white"><span>"Its better than PayPal !"</span></h2>
+                                        <h2 class="animate__zoomInUp"><span>- Beff Jezos</span></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="mb-5">
+                                        <h3 class="h4 font-weight-bold text-theme">Register</h3>
+                                    </div>
+                                    <h6 class="h5 mb-0">Just Do Register.</h6>
+                                    <p class="text-muted mt-2 mb-5">If You Really Want To Know, Register.</p>
+                                    <form [formGroup]="registrationForm" (ngSubmit)="registerUser()">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="registerName" placeholder="Full Name" formControlName="name" />
+                                            <div class="alert alert-danger" *ngIf="registrationForm.get('name')?.invalid && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
+                                                Please provide a name.
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="registerEmail" placeholder="Email address" formControlName="email" />
+                                            <div class="alert alert-danger" *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
+                                                Please provide a valid Email.
+                                            </div>
+                                            <div class="alert alert-danger" *ngIf="emailExists">
+                                                Account with this email already exists !!
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="registerPassword" placeholder="Password" formControlName="password"/>
+                                            <div class="alert alert-danger" *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
+                                                Please provide a valid password (minimum length 8 and contains atleast one uppercase character, one digit, a special symbol and no whitespaces).
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group mb-5">
+                                            <label for="registerDob">Date of Birth:</label>
+                                            <input type="date" onkeydown="return false" class="form-control" id="registerDob" formControlName="dob" [max]="validDate"/>
+                                            <div class="alert alert-danger" *ngIf="registrationForm.get('dob')?.invalid && (registrationForm.get('dob')?.dirty || registrationForm.get('dob')?.touched)">
+                                                Please provide a valid date of birth. (18+)
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-theme" [disabled]="registrationForm.invalid">Register</button>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <p class="text-muted text-center mt-3 mb-0">Already have an account? <span class="text-primary ml-1" (click)="showloginpage=true">Login</span></p>
+            </div>
+        </div>
+    </div>
+</div>

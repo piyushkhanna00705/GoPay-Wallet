@@ -1,0 +1,171 @@
+<!-- Header Component -->
+<app-header></app-header>
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<!-- Profile Elements -->
+<div class="container">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card" style="height: 100%">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+              <div class="mt-3">
+                <h4>{{profileData.name | titlecase}}</h4>
+                <p class="text-muted font-size-sm">India</p>
+                <p>Customer Id: {{profileData.customerId}}</p>
+                <p>Customer since {{profileData.createdAt}}</p>
+              </div>
+              <div class="mt-3">
+                <div class="col-sm-12">
+                  <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Info</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Full Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{profileData.name}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{profileData.email}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Mobile</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{profileData.phoneNo}}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{profileData.address}}
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="row">
+                <div class="wlletimg col-md-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                    <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+                  </svg>
+                  <i class="bi bi-wallet2 mr-2"></i>
+                </div>
+                <div class="col-md-3">
+                  <h6 class="mb-0">Wallet Amount</h6>
+                </div>
+                <div class="walletamount col-md-8" style="text-align: right;">
+                  <h5 class="mb-0 text-secondary">₹ {{profileData.walletAmount}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="row">
+                <div class="wlletimg col-md-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
+                    <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z"/>
+                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path fill-rule="evenodd" d="M8 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+                  </svg>
+                  <i class="bi bi-coin mr-2"></i>
+                </div>
+                <div class="col-md-5">
+                  <h6 class="mb-0">Reward Points Accrued</h6>
+                </div>
+                <div class="walletamount col-md-6" style="text-align: right;">
+                  <h5 class="mb-0 text-secondary">{{profileData.rewardPoints}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="row">
+                <div class="wlletimg col-md-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-stop-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3z"/>
+                  </svg>
+                  <i class="bi bi-stop-circle mr-2"></i>
+                </div>
+                <div class="col-md-3">
+                  <h6 class="mb-0">Wallet Limit</h6>
+                </div>
+                <div class="walletamount col-md-8" style="text-align: right;">
+                  <h5 class="mb-0 text-secondary">₹ {{profileData.walletLimit}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="name" class="col-form-label">Full Name:</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="updateData.name" name="name">
+          </div>
+          <div class="mb-3">
+            <label for="mobile" class="col-form-label">Mobile:</label>
+            <input type="number" class="form-control" id="mobile" [(ngModel)]="updateData.phoneNo" name="phone">
+          </div>
+          <div class="mb-3">
+            <label for="address" class="col-form-label">Address:</label>
+            <input type="text" class="form-control" id="address" [(ngModel)]="updateData.address" name="address">
+          </div>
+          <div class="mb-3">
+            <label for="walletlimit" class="col-form-label">Wallet Limit:</label>
+            <input type="text" class="form-control" id="walletlimit" [(ngModel)]="updateData.walletLimit" name="walletlimit">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="editInfo()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

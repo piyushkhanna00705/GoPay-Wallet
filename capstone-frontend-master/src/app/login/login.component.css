@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:900&display=swap');
+
+body{
+    margin-top:20px;
+    background: #f6f9fc;
+}
+
+h4 {
+    font-size: 6vw;
+    max-width: 75vw;
+    color: #fefefe;
+  }
+  h4 span {
+    background-image: linear-gradient(transparent calc(65% - 5px), #DDB500 5px);
+    background-size: 0;
+    background-repeat: no-repeat;
+    display: inline;
+    transition: 0.5s ease;
+  }
+  h4:hover span {
+    background-size: 100%;
+  }
+
+  h2 {
+    font-size: 1.5vw;
+    max-width: 75vw;
+    color: #fefefe;
+  }
+  h2 span {
+    background-image: linear-gradient(transparent calc(65% - 5px), #DDB500 5px);
+    background-size: 0;
+    background-repeat: no-repeat;
+    display: inline;
+    transition: 0.5s ease;
+  }
+  h2:hover span {
+    background-size: 100%;
+  }
+
+.account-block {
+    padding: 0;
+    background-image: url(../../assets/Banner.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+}
+.account-block .overlay {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.account-block .account-testimonial {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+}
+
+.text-theme {
+    color: #5369f8 !important;
+}
+
+.btn-theme {
+    background-color: #5369f8;
+    border-color: #5369f8;
+    color: #fff;
+    margin-right: 1rem;
+}
+
+.form-group{
+    margin-bottom: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+/* .invalidform{
+    color: rgb(233, 19, 19);
+} */
+
+.bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #9f6 50%, #5ef 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:5s;
+  }
+
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }

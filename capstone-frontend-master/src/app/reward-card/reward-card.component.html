@@ -1,0 +1,10 @@
+<div class="card">
+  <img src="{{reward.rewardImageUrl}}" class="card-img-top" alt="...">
+  <div class="card-header">{{reward.rewardName}}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{reward.rewardPrice}} Points.</h5>
+    <h5 class="card-title" *ngIf="showFlag">Code : {{reward.rewardCode}}</h5>
+    <p class="card-text">{{reward.description}}</p>
+  </div>
+  <button [disabled]="clicked" class="btn btn-danger btn-square" (click)="onRedeem()">Redeem!</button>
+</div>

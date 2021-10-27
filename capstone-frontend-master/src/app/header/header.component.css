@@ -1,0 +1,62 @@
+.b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
+
+  /* To change the style of the header background */
+  .header-style {
+        background-image: linear-gradient(to right, #2b5876 0%, #4e4376  51%, #2b5876  100%)
+  }
+
+  /* To change the style of the header list elements */
+    li a {
+        color: white;
+    }
+  
+  .form-control-dark {
+    color: #fff;
+    background-color: var(--bs-dark);
+    border-color: var(--bs-gray);
+  }
+  .form-control-dark:focus {
+    color: #fff;
+    background-color: var(--bs-dark);
+    border-color: #fff;
+    box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .25);
+  }
+  
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
+  
+  .text-small {
+    font-size: 85%;
+  }
+  
+  .dropdown-toggle {
+    outline: 0;
+  }
+
+.nav-items{
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.container li a:hover {
+  color: white;
+  
+}
+
+.container li.nav-items a:hover{
+ padding: 3px 0;
+  margin-left:5px;
+  font-weight:700;
+}
+
+.container li.nav-items a:hover{
+font-weight: 700;
+}
